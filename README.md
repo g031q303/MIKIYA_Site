@@ -38,8 +38,10 @@ Firebaseでデプロイし、公開(作業開始日：2021/04/05)
 
 ## **6.制作環境（サーバー環境や使用ツール）と使用言語**
 
-サーバ環境：ファイヤーベース(By Google)
-開発環境：VisualCode(By Windows)
+サーバ環境：Firebase
+
+開発環境：VisualCode,Adobe XD(デザインカンプ)
+
 使用言語：HTML5/CSS3、JavaScript、JQuery
 
 
