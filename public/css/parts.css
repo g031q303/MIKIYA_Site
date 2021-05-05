@@ -1,0 +1,1717 @@
+@charset "utf-8";
+
+/*==================================================
+Background Animation
+===================================*/
+
+/*========= ローディング画面CSS ===============*/
+#splash {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #f18d9e;
+	z-index: 9999999;
+	text-align:center;
+	color:#333;
+}
+
+#splash-logo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#splash-logo img,
+#splash-logo canvas{
+	width:50px;
+}
+
+/*=========================================
+Screen Animation
+=========================================*/
+
+.splashbg{
+	position: fixed;
+	top: 0;
+	right:0;
+	bottom:0;
+	left: 0;
+	border-width: 0px;
+	border-style:solid;
+    border-color: #f18d9e;
+	animation-duration:.5s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes backBoxAnime{
+	99.9% {
+        z-index: 2;
+		border-width: 0px;
+	}
+    100%{
+        z-index: -1;
+        border-width: 0px;
+    }
+}
+
+/*画面遷移後のコンテンツ設定*/
+#container{
+    position: relative;
+	opacity: 0;
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear #container{
+	animation-name:PageAnimeAppear;
+	animation-duration:1s;
+	animation-delay:0.2s;
+	animation-fill-mode:forwards;
+	opacity: 0;
+}
+
+@keyframes PageAnimeAppear{
+	0% {
+	opacity: 0;
+	}
+	100% {
+	opacity: 1;
+}
+}
+
+/*==================================================
+Hamburger menu Animation (after)
+===================================*/
+
+/*Active area*/
+#g-nav.panelactive{
+    position:fixed;
+    z-index: 999;
+	top: 0;
+	width:100%;
+    height: 100vh;
+}
+
+/*Enlargement of circle*/
+.circle-bg{
+    position: fixed;
+	z-index:3;
+    /*丸のSize*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #5bc8ac;
+    /*丸のposition and shape*/
+	transform: scale(0);
+	top:-50px;
+    left:calc(50% - 50px);
+    transition: all .6s;
+}
+
+.circle-bg.circleactive{
+	transform: scale(50);
+}
+
+/*Navigationの縦スクロール*/
+#g-nav-list{
+    display: none;
+    position: fixed;
+    z-index: 999; 
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#g-nav.panelactive #g-nav-list{
+    display: block;
+}
+
+/*Navigation*/
+#g-nav ul {
+	opacity: 0;
+    position: absolute;
+    z-index: 999;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+
+#g-nav.panelactive ul {
+    opacity:1;
+}
+
+#g-nav.panelactive ul li{
+animation-name:gnaviAnime;
+animation-duration:1s;
+animation-delay:.2s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+@keyframes gnaviAnime{
+0% {
+opacity: 0;
+}
+100% {
+opacity: 1;
+}
+}
+
+/*Layout settings*/
+#g-nav li{
+	text-align: center; 
+	list-style: none;
+}
+
+#g-nav li a{
+	color: #333;
+	text-decoration: none;
+	padding:30px;
+	display: block;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: bold;
+}
+
+/*==================================================
+Hamburger menu Animation
+====================================================*/
+/*Outside the button*/
+.openbtn{
+	position:fixed;
+    top:10px;
+	right: 10px;    
+    z-index: 9999;
+	background:#2e98e5;
+	cursor: pointer;
+    width: 50px;
+    height:50px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+
+/*Inside the button*/
+.openbtn .openbtn-area{
+    transition: all .4s;
+}
+
+.openbtn span{
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+	background: #fff;
+    width: 45%;
+}
+
+
+.openbtn span:nth-of-type(1) {
+	top:15px;	
+}
+
+.openbtn span:nth-of-type(2) {
+	top:23px;
+}
+
+.openbtn span:nth-of-type(3) {
+	top:31px;
+}
+
+
+/*------------------------------------------------------------------------------------------
+activeクラスが付与されると .openbtn-areaが360度回転し、その中の線のtopの位置や形状が変化して×に
+-------------------------------------------------------------------------------------------*/
+.openbtn.active .openbtn-area{
+	transform: rotateX(360deg);
+}
+
+.openbtn.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-135deg);
+    width: 30%;
+}
+
+.openbtn.active span:nth-of-type(2) {
+	opacity: 0;
+}
+
+.openbtn.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(135deg);
+    width: 30%;
+}
+
+
+
+/*==================================================
+Button03 Animation
+====================================================*/
+/* ボタン共通設定 */
+.btn03{
+    position: relative;
+    /*Button Size*/
+	text-decoration: none;
+	display: inline-block;
+    text-align: center;
+    background: transparent;
+	border-radius: 25px;
+	border: solid 1px #333;
+    outline: none;
+    /*Animation Specification*/
+    transition: all 0.2s ease;
+}
+
+/*hoverをした後のボタンの形状*/
+.btn03:hover{
+	border-color:transparent;	
+}
+
+/*Button in Text*/
+.btn03 span {
+	position: relative;
+	z-index: 2;
+    /*Text size*/
+	display: block;
+    padding: 10px 30px;
+	background:#f0f0f0;
+	border-radius: 25px;
+	color:#333;
+    /*Animation Specification*/
+    transition: all 0.3s ease;
+}
+
+/*Shadow Setting*/
+.pushright:before {
+    content: "";
+    position: absolute;
+	z-index: -1;
+    top: 4px;
+    left: 4px;
+    /*shadow size*/
+    width: 100%;
+    height: 100%;
+	border-radius: 25px;
+    background-color: #333;
+}
+
+.pushright:hover span {
+	background-color: #333;
+	color: #fff;
+	transform: translate(4px, 4px);
+}
+
+
+/*==================================================
+In-page transition
+====================================================*/
+
+#page-top {
+	position: fixed;
+	right: 10px;
+	bottom:40px;
+	z-index: 2;
+    /*Hidden setting*/
+	opacity: 0;
+	transform: translateY(150px);
+}
+
+/*Move Up*/
+#page-top.UpMove{
+	animation: UpAnime 0.5s forwards;
+}
+
+@keyframes UpAnime{
+    from {
+        opacity: 0;
+        transform: translateY(150px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*Move Down*/
+#page-top.DownMove{
+	animation: DownAnime 0.5s forwards;
+}
+
+@keyframes DownAnime{
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(150px);
+    }
+}
+
+/*Image Switching and Movement*/
+#page-top a {
+    /*aタグの形状*/
+	display: block;
+	width: 80px;
+	height: 80px;
+	color: #333;
+	text-align: center;
+	text-transform: uppercase; 
+	text-decoration: none;
+	font-size:0.6rem;
+    /*background Setting*/
+	background: url("../img/rocket_base.svg") no-repeat center;
+	background-size: contain;
+}
+
+#page-top.floatAnime a{
+	width: 80px;
+	height: 80px;
+    /*background Setting*/
+	background: url("../img/rocket.svg") no-repeat center;
+	background-size: contain;
+    /*Animation Specification*/
+	animation: floatAnime 2s linear infinite;
+	opacity: 0;
+}
+
+@keyframes floatAnime {
+    0% { transform: translateX(0); opacity: 0; }
+    25% { transform: translateX(-6px);opacity: 1; }
+    50% { transform: translateX(0) }
+    100% { transform: translateX(6px);opacity: 1; }
+}
+
+/*Page Top position*/
+#page-top span{
+    position: absolute;
+    bottom: -11px;
+    right: 20px;
+	color: #333;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+#page-top.floatAnime span{
+    bottom: -30px;
+}
+
+
+/*==================================================
+Slide show(Top)
+====================================================*/
+.slider {
+    position:relative;
+	z-index: 1;/*↑z-indexの値をh1のz-indexの値よりも小さくして背景に回す*/
+	height: 80vh;
+}
+/*Background setting*/
+
+.slider-item01 {
+    background:url(../img/main5.jpg);
+}
+
+.slider-item02 {
+    background:url(../img/main4.jpg);
+}
+
+.slider-item03 {
+    background:url(../img/main6.jpg);
+}
+
+.slider-item {
+    width: 100%;
+    height:80vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/*Arrow setting*/
+/*戻る、次へ矢印の位置*/
+.slick-prev, 
+.slick-next {
+    position: absolute;
+	z-index: 3;
+    top: 42%;
+    cursor: pointer;
+    outline: none;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    height: 25px;
+    width: 25px;
+}
+
+.slick-prev {
+    left:2.5%;
+    transform: rotate(-135deg);
+}
+
+.slick-next {
+    right:2.5%;
+    transform: rotate(45deg);
+}
+
+/*Dots navigation setting*/
+
+.slick-dots {
+	position: relative;
+	z-index: 3;
+    text-align:center;
+	margin:-50px 0 0 0;
+}
+
+.slick-dots li {
+    display:inline-block;
+	margin:0 5px;
+}
+
+.slick-dots button {
+    color: transparent;
+    outline: none;
+    width:8px;
+    height:8px;
+    display:block;
+    border-radius:50%;
+    background:#fff;
+}
+
+.slick-dots .slick-active button{
+    background:#ffec04;
+}
+
+
+/*==================================================
+Slide show (ander)
+===================================*/
+
+/*slick_JS　Margin adjustment*/
+
+.slider2 img {
+    width:100%;
+    height:100%;
+}
+
+.slider2 .slick-slide {
+    margin:0 10px;
+}
+
+
+/*===========================================================
+Thumbnail Animation
+===========================================================*/
+
+/*===Modal css　============================================*/
+.hide-area{
+	display: none;
+}
+
+h3 span{
+	border-top: 1px dashed #808080;
+    border-bottom: 1px dashed #808080;
+    padding: 0.3em;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+
+
+.modaal-fullscreen .modaal-content-container{
+    background: linear-gradient(45deg,rgba(88,182,211,.9),rgba(229,93,135,.9));
+	color: #fff;
+	text-align: center;
+}
+
+/*Button Colore,position*/
+.modaal-fullscreen .modaal-close{
+	background:none;
+	right:20px;
+}
+
+/*Close Button Coloer*/
+.modaal-close:focus:after,
+.modaal-close:focus:before,
+.modaal-close:hover:after,
+.modaal-close:hover:before{
+	background:#666;
+}
+
+
+.caption{
+    display: block;
+    padding: 10px 0;
+}
+
+
+.modaal-content-container img{
+    border: 5px solid #fff;
+    width:100%;
+	max-width:700px;
+	height:auto;
+	vertical-align: bottom;
+}
+
+.plofile{
+    position: relative;
+    font-size: 80px;
+    padding: 0.25em 0;
+}
+.plofile:after {
+    content: "";
+    display: block;
+    height: 4px;
+    background: -webkit-linear-gradient(to right, rgb(255, 186, 115), #ffb2b2);
+    background: linear-gradient(to right, rgb(255, 186, 115), #ffb2b2);
+}
+
+.plofile:before{
+    content:"\02714";
+}
+
+@media screen and (max-width:840px) {
+.plofile{
+    margin:0;
+    font-size: 1rem;
+}
+}
+
+/*==================================================
+Skill Animation
+====================================================*/
+
+/*=======skill settings========================*/
+.skills {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+
+.skills .skill {
+        width: 250px;
+        background-color: white;
+        padding-top: 10px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        border-radius: 15px;
+        margin: 33.33333px 0;
+        -webkit-box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5); 
+}
+
+.skills .skill:hover {
+            -webkit-box-shadow: 0px 20px 10px -10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 20px 10px -10px rgba(0, 0, 0, 0.5);
+            margin: 23.33333px 0 43.33333px;
+}
+
+.desc {
+        color: #a0a0a0;
+        font-weight: bold;
+        text-align: center; }
+
+.skills .skill p {
+            text-align: center;
+            font-weight: bold;
+            color: #c0c0c0; 
+}
+
+.skills .skill .skill_name {
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+            border-top: 1px dashed #eee;
+            line-height: 50px; 
+}
+
+/*==========================================
+Skill html 
+==========================================*/
+.skills .skill .html{
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: #ffbf7f;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            margin: 30px auto 0;
+            z-index: 1;
+            -webkit-box-shadow: 0 0 5px #a0a0a0;
+            box-shadow: 0 0 5px #a0a0a0;
+}
+
+.skills .skill .html::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -160px;
+            width: 120px;
+            height: 120px;
+            background: #eee;
+            -webkit-transform-origin: right 60px;
+            -ms-transform-origin: right 60px;
+            transform-origin: right 60px;
+            z-index: 2;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s;
+}
+
+.skills .skill .html::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 60px;
+            width: 120px;
+            height: 120px;
+            background: #ffbf7f;
+            -webkit-transform-origin: left 60px;
+            -ms-transform-origin: left 60px;
+            transform-origin: left 60px;
+            z-index: 3;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s;
+}
+
+.skills .skill .html .circle-inner {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            z-index: 4;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.skills .skill .html .circle-inner img {
+                width: 40px;
+                margin-top: 20px; 
+}
+
+.skills .skill .html .circle-inner img {
+            width: 35px;
+            margin-top: 22.5px; 
+}
+
+@-webkit-keyframes rotate-html-right {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #eee; }
+    50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background: #eee; }
+    50.01% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #ffbf7f; }
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #ffbf7f; } 
+}
+
+@keyframes rotate-html-right {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #eee; }
+    50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background: #eee; }
+    50.01% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #ffbf7f; }
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #ffbf7f; } 
+}
+
+@-webkit-keyframes rotate-html-left {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    100% {
+    -webkit-transform: rotate(144deg);
+    transform: rotate(144deg); } 
+}
+
+@keyframes rotate-html-left {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    100% {
+    -webkit-transform: rotate(144deg);
+    transform: rotate(144deg); } 
+}
+
+.skills .skill .html_anim::before{
+            -webkit-animation: rotate-html-left 1.5s linear 1s forwards;
+            animation: rotate-html-left 1.5s linear 1s forwards; 
+}
+
+.skills .skill .html_anim::after{
+            -webkit-animation: rotate-html-right 1.5s linear 1s forwards;
+            animation: rotate-html-right 1.5s linear 1s forwards; 
+}
+
+
+/*==========================================
+Skill css 
+==========================================*/
+.skills .skill .css{
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: #7fbfff;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            margin: 30px auto 0;
+            z-index: 1;
+            -webkit-box-shadow: 0 0 5px #a0a0a0;
+            box-shadow: 0 0 5px #a0a0a0; 
+}
+
+.skills .skill .css::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -60px;
+            width: 120px;
+            height: 120px;
+            background: #eee;
+            -webkit-transform-origin: right 60px;
+            -ms-transform-origin: right 60px;
+            transform-origin: right 60px;
+            z-index: 2;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s;
+}
+
+.skills .skill .css::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 60px;
+            width: 120px;
+            height: 120px;
+            background: #7fbfff;
+            -webkit-transform-origin: left 60px;
+            -ms-transform-origin: left 60px;
+            transform-origin: left 60px;
+            z-index: 3;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s; 
+}
+
+.skills .skill .css .circle-inner {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            z-index: 4;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.skills .skill .css .circle-inner img {
+                width: 40px;
+                margin-top: 20px; 
+}
+
+.skills .skill .css .circle-inner img {
+            width: 35px;
+            margin-top: 22.5px; 
+}
+
+@-webkit-keyframes rotate-css-right {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #eee; }
+    50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background: #eee; }
+    50.01% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #7fbfff; }
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #7fbfff; } 
+}
+
+@keyframes rotate-css-right {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #eee; }
+    50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background: #eee; }
+    50.01% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #7fbfff; }
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #7fbfff; } 
+}
+
+@-webkit-keyframes rotate-css-left {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    100% {
+    -webkit-transform: rotate(108deg);
+    transform: rotate(108deg); } 
+}
+
+@keyframes rotate-css-left {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    100% {
+    -webkit-transform: rotate(108deg);
+    transform: rotate(108deg); } 
+}
+
+.skills .skill .css_anim::before {
+            -webkit-animation: rotate-css-left 1.5s linear 1s forwards;
+            animation: rotate-css-left 1.5s linear 1s forwards;
+}
+
+.skills .skill .css_anim::after {
+            -webkit-animation: rotate-css-right 1.5s linear 1s forwards;
+            animation: rotate-css-right 1.5s linear 1s forwards; 
+}
+
+
+/*==========================================
+Skill javascript
+==========================================*/
+.skills .skill .js {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: #ffff7f;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            margin: 30px auto 0;
+            z-index: 1;
+            -webkit-box-shadow: 0 0 5px #a0a0a0;
+            box-shadow: 0 0 5px #a0a0a0; 
+}
+
+.skills .skill .js::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 60px;
+            left: -60px;
+            width: 120px;
+            height: 120px;
+            background: #eee;
+            -webkit-transform-origin: right 60px;
+            -ms-transform-origin: right 60px;
+            transform-origin: right 60px;
+            z-index: 2;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s;
+}
+
+.skills .skill .js::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 60px;
+            width: 120px;
+            height: 120px;
+            background: #ffff7f;
+            -webkit-transform-origin: left 60px;
+            -ms-transform-origin: left 60px;
+            transform-origin: left 60px;
+            z-index: 3;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s;
+
+}.skills .skill .js .circle-inner {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            z-index: 4;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.skills .skill .js .circle-inner img {
+                width: 40px;
+                margin-top: 20px; 
+}
+
+.skills .skill .js .circle-inner img {
+            width: 35px;
+            margin-top: 22.5px; 
+}
+
+@-webkit-keyframes rotate-js-right {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #eee; }
+    50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background: #eee; }
+    50.01% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #ffff7f; }
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #ffff7f; } }
+
+@keyframes rotate-js-right {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #eee; }
+    50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background: #eee; }
+    50.01% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #ffff7f; }
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #ffff7f; } }
+
+@-webkit-keyframes rotate-js-left {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    100% {
+    -webkit-transform: rotate(72deg);
+    transform: rotate(72deg); } }
+
+@keyframes rotate-js-left {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    100% {
+    -webkit-transform: rotate(72deg);
+    transform: rotate(72deg); } 
+}
+
+.skills .skill .js_anim::before {
+            -webkit-animation: rotate-js-left 1.5s linear 1s forwards;
+            animation: rotate-js-left 1.5s linear 1s forwards; 
+}
+
+.skills .skill .js_anim::after {
+            -webkit-animation: rotate-js-right 1.5s linear 1s forwards;
+            animation: rotate-js-right 1.5s linear 1s forwards; 
+}
+
+
+/*==========================================
+Skill jquery
+==========================================*/
+.skills .skill .jq {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: #00ad79;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            margin: 30px auto 0;
+            z-index: 1;
+            -webkit-box-shadow: 0 0 5px #a0a0a0;
+            box-shadow: 0 0 5px #a0a0a0; 
+}
+
+.skills .skill .jq::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -60px;
+            width: 120px;
+            height: 120px;
+            background: #eee;
+            -webkit-transform-origin: right 60px;
+            -ms-transform-origin: right 60px;
+            transform-origin: right 60px;
+            z-index: 2;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s; 
+}
+
+.skills .skill .jq::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 60px;
+            width: 120px;
+            height: 120px;
+            background: #00ad79;
+            -webkit-transform-origin: left 60px;
+            -ms-transform-origin: left 60px;
+            transform-origin: left 60px;
+            z-index: 3;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s;
+}
+
+.skills .skill .jq .circle-inner {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            z-index: 4;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.skills .skill .jq .circle-inner img {
+                width: 50px;
+                margin-top: 30px; 
+}
+
+.skills .skill .jq .circle-inner img {
+            margin-top: 25px; 
+}
+
+@-webkit-keyframes rotate-jq-right {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #eee; }
+    50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background: #eee; }
+    50.01% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #00ad79; }
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #00ad79; } }
+
+@keyframes rotate-jq-right {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #eee; }
+    50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background: #eee; }
+    50.01% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #00ad79; }
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #00ad79; } }
+
+@-webkit-keyframes rotate-jq-left {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    100% {
+    -webkit-transform: rotate(36deg);
+    transform: rotate(36deg); } }
+
+@keyframes rotate-jq-left {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    100% {
+    -webkit-transform: rotate(36deg);
+    transform: rotate(36deg); } }
+
+.skills .skill .jq_anim::before {
+            -webkit-animation: rotate-jq-left 1.5s linear 1s forwards;
+            animation: rotate-jq-left 1.5s linear 1s forwards; 
+}
+
+.skills .skill .jq_anim::after {
+            -webkit-animation: rotate-jq-right 1.5s linear 1s forwards;
+            animation: rotate-jq-right 1.5s linear 1s forwards; 
+}
+
+/*==========================================
+Skill php
+==========================================*/
+.skills .skill .php {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: #7174ad;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            margin: 30px auto 0;
+            z-index: 1;
+            -webkit-box-shadow: 0 0 5px #a0a0a0;
+            box-shadow: 0 0 5px #a0a0a0; 
+}
+
+.skills .skill .php::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -60px;
+            width: 120px;
+            height: 120px;
+            background: #eee;
+            -webkit-transform-origin: right 60px;
+            -ms-transform-origin: right 60px;
+            transform-origin: right 60px;
+            z-index: 2;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s; 
+}
+
+.skills .skill .php::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 60px;
+            width: 120px;
+            height: 120px;
+            background: #7174ad;
+            -webkit-transform-origin: left 60px;
+            -ms-transform-origin: left 60px;
+            transform-origin: left 60px;
+            z-index: 3;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s; 
+}
+
+.skills .skill .php .circle-inner {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            z-index: 4;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.skills .skill .php .circle-inner img {
+                width: 40px;
+                margin-top: 20px; 
+}
+
+.skills .skill .php .circle-inner img {
+            width: 50px;
+            margin-top: 25px; 
+}
+
+@-webkit-keyframes rotate-php-right {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #eee; }
+    50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background: #eee; }
+    50.01% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #7174ad; }
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #7174ad; } }
+
+@keyframes rotate-php-right {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #eee; }
+    50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background: #eee; }
+    50.01% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #7174ad; }
+    100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    background: #7174ad; } }
+
+@-webkit-keyframes rotate-php-left {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    100% {
+    -webkit-transform: rotate(36deg);
+    transform: rotate(36deg); } }
+
+@keyframes rotate-php-left {
+    0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+    100% {
+    -webkit-transform: rotate(36deg);
+    transform: rotate(36deg); } }
+
+.skills .skill .php_anim::before {
+            -webkit-animation: rotate-php-left 1.5s linear 1s forwards;
+            animation: rotate-php-left 1.5s linear 1s forwards; 
+}
+
+.skills .skill .php_anim::after {
+            -webkit-animation: rotate-php-right 1.5s linear 1s forwards;
+            animation: rotate-php-right 1.5s linear 1s forwards; 
+}
+
+/*==========================================
+Skill Premiere Pro
+==========================================*/
+.skills .skill .pr {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: #41134d;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            margin: 30px auto 0;
+            z-index: 1;
+            -webkit-box-shadow: 0 0 5px #a0a0a0;
+            box-shadow: 0 0 5px #a0a0a0; 
+}
+
+.skills .skill .pr::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -60px;
+            width: 120px;
+            height: 120px;
+            background: #eee;
+            -webkit-transform-origin: right 60px;
+            -ms-transform-origin: right 60px;
+            transform-origin: right 60px;
+            z-index: 2;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s;
+}
+
+.skills .skill .pr::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 60px;
+            width: 120px;
+            height: 120px;
+            background: #41134d;
+            -webkit-transform-origin: left 60px;
+            -ms-transform-origin: left 60px;
+            transform-origin: left 60px;
+            z-index: 3;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s; 
+}
+.skills .skill .pr .circle-inner {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            z-index: 4;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.skills .skill .pr .circle-inner img {
+                width: 40px;
+                margin-top: 20px; 
+}
+
+.skills .skill .pr .circle-inner img {
+            width: 40px;
+            margin-top: 20px; 
+}
+
+
+/*==========================================
+Skill Photo Shope
+==========================================*/
+.skills .skill .ps {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: #00b8dd;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            margin: 30px auto 0;
+            z-index: 1;
+            -webkit-box-shadow: 0 0 5px #a0a0a0;
+            box-shadow: 0 0 5px #a0a0a0; 
+}
+
+.skills .skill .ps::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -60px;
+            width: 120px;
+            height: 120px;
+            background: #eee;
+            -webkit-transform-origin: right 60px;
+            -ms-transform-origin: right 60px;
+            transform-origin: right 60px;
+            z-index: 2;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s; 
+}
+
+.skills .skill .ps::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 60px;
+            width: 120px;
+            height: 120px;
+            background: #00b8dd;
+            -webkit-transform-origin: left 60px;
+            -ms-transform-origin: left 60px;
+            transform-origin: left 60px;
+            z-index: 3;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s; 
+}
+
+.skills .skill .ps .circle-inner {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            z-index: 4;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.skills .skill .ps .circle-inner img {
+                width: 40px;
+                margin-top: 20px; 
+}
+
+.skills .skill .ps .circle-inner img {
+            width: 40px;
+            margin-top: 20px; 
+}
+
+
+/*==========================================
+Skill Xetend
+==========================================*/
+.skills .skill .xd {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: #d73f90;
+            border-radius: 50%;
+            text-align: center;
+            overflow: hidden;
+            margin: 30px auto 0;
+            z-index: 1;
+            -webkit-box-shadow: 0 0 5px #a0a0a0;
+            box-shadow: 0 0 5px #a0a0a0; 
+}
+
+.skills .skill .xd::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -60px;
+            width: 120px;
+            height: 120px;
+            background: #eee;
+            -webkit-transform-origin: right 60px;
+            -ms-transform-origin: right 60px;
+            transform-origin: right 60px;
+            z-index: 2;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s; 
+}
+
+.skills .skill .xd::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 60px;
+            width: 120px;
+            height: 120px;
+            background: #d73f90;
+            -webkit-transform-origin: left 60px;
+            -ms-transform-origin: left 60px;
+            transform-origin: left 60px;
+            z-index: 3;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s; 
+}
+
+.skills .skill .xd .circle-inner {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            z-index: 4;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.skills .skill .xd .circle-inner img {
+                width: 40px;
+                margin-top: 20px; 
+}
+
+.skills .skill .xd .circle-inner img {
+    width: 40px;
+    margin-top: 20px; 
+}
+
+.skills .invisible {
+    height: 0;
+    opacity: 0;
+    padding: 0;
+    margin: 0; 
+}
+
+
+
+
+
+
+
+/*==================================================
+Other Animation
+===================================*/
+
+
+/*Move to the right*/
+.rotateRightZ{
+	animation-name: rotateRightZAnime;
+	animation-duration:1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes rotateRightZAnime{
+	from{
+		transform: rotateZ(0);
+		}
+	to{
+		transform: rotateZ(360deg);
+		}
+}
+
+/*Move on the spot*/
+.fadeIn{
+animation-name: fadeInAnime;
+animation-duration:1s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+
+@keyframes fadeInAnime{
+from {
+    opacity: 0;
+}
+
+to {
+    opacity: 1;
+}
+}
+
+/* Move to the under */
+
+.fadeUp{
+animation-name: fadeUpAnime;
+animation-duration:0.5s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+
+@keyframes fadeUpAnime{
+from {
+    opacity: 0;
+	transform: translateY(100px);
+}
+
+to {
+    opacity: 1;
+	transform: translateY(0);
+}
+}
+
+/*Move to the Upper left*/
+.flipLeftTop{
+animation-name: flipLeftTopAnime;
+animation-duration:0.5s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+
+@keyframes flipLeftTopAnime{
+from {
+transform: translate(-20px,80px) rotate(-15deg);
+	opacity: 0;
+}
+
+to {transform: translate(0,0) rotate(0deg);
+	opacity: 1;
+}
+}
+
+/*Move to the Upper left */
+.flipRightTop{
+animation-name: flipRightTopAnime;
+animation-duration:0.5s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+
+@keyframes flipRightTopAnime{
+rom {
+transform: translate(-20px,80px) rotate(25deg);
+opacity: 0;
+}
+
+to {
+    transform: translate(0,1) rotate(0deg);
+	opacity: 1;
+}
+}
+
+/*Expansion Animation*/
+.zoomIn{
+	animation-name: zoomInAnime;
+	animation-duration:0.5s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes zoomInAnime{
+from {
+	transform: scale(0.6);
+	opacity: 0;
+}
+
+to {
+    transform: scale(1);
+	opacity: 1; 
+}
+}
+
+
+.fadeUpTrigger,
+.zoomInTrigger,
+.flipLeftTopTrigger,
+.flipRightTopTrigger{
+    opacity: 0;
+}
+

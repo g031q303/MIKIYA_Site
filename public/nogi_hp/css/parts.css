@@ -1,0 +1,275 @@
+@charset "utf-8";
+/*===================================
+LoadingのためのCSS
+=====================================*/
+
+/* Loading背景画面設定　*/
+#splash {
+    /*fixedで全面に固定*/
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	text-align:center;
+	color:#fff;
+}
+
+/* Loading画像中央配置　*/
+#splash_text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+    z-index: 999;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	width: 100%;
+}
+
+/*IE11対策用バーの線の高さ*/
+#splash_text svg{
+    height: 10px;
+}
+
+/*割れる画面のアニメーション*/
+.loader_cover {
+    width: 100%;
+    height: 50%;
+    background-color: rgba(199, 250, 233, 0.849);
+    transition: all .2s cubic-bezier(.04, .435, .315, .9);
+    transform: scaleY(1);
+}
+/*上の画面*/
+.loader_cover-up {
+    transform-origin: center top;
+}
+
+/*下の画面*/
+.loader_cover-down {
+    position: absolute;
+    bottom: 0;
+    transform-origin: center bottom;
+}
+/*クラス名がついたらY軸方向に0*/
+.coveranime {
+    transform: scaleY(0);
+}
+
+
+/*=======================================
+ページトップのためのCSS
+========================================*/
+
+/*スクロールリンクの形状*/
+.scroll-top {
+	/*表示位置*/
+	position: fixed;
+	right: 20px;
+	bottom: 10px;
+	z-index: 2;
+	/*はじめは非表示*/
+	opacity: 0;
+	visibility: hidden; 
+	transition: opacity .5s, visibility .5s; /*それぞれに0.5秒の変化のアニメーション*/
+	/*縦書き*/
+	-webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+	/*改行禁止*/
+    white-space: nowrap;
+	/*矢印の動き*/
+	animation: arrowmove 1s ease-in-out infinite;
+}
+
+@keyframes arrowmove{
+    0%{bottom:20px;}
+    50%{bottom:25px;}
+    100%{bottom:20px;}
+}
+
+
+/*.scroll-viewクラスがついたら出現*/
+.scroll-top.scroll-view {
+	opacity: 1;
+	visibility: visible;
+}
+
+/*リンク全体の aタグの形状*/
+.scroll-top a {
+	text-decoration: none;
+	color: #666;
+	text-transform: uppercase;
+	font-size:0.9rem;
+    display: block;
+}
+
+/*スクロールリンクの形状*/
+
+.js-scroll a::after{
+	content:"";
+	position: absolute;
+	top:0;
+	right:0;
+	width:1px;
+	height: 50px;
+	background:#666;
+}
+
+.js-scroll a::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    right: -6px;
+    width: 1px;
+    height: 20px;
+    background: #666;
+    transform: skewX(-31deg);
+}
+
+/*Edge IE11 hack*/
+_:-ms-lang(x), .js-scroll a::before{
+	right:-11px;
+}
+
+/*ページトップリンクの形状*/
+
+.js-pagetop a::after{
+	content:"";
+	position: absolute;
+	top:0;
+	right:0;
+	width:1px;
+	height: 50px;
+	background:#666;
+}
+
+.js-pagetop a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -6px;
+    width: 1px;
+    height: 20px;
+    background: #666;
+    transform: skewX(31deg);
+}
+
+/*Edge IE11 hack*/
+_:-ms-lang(x), .js-pagetop a::before{
+	right:0;
+}
+
+
+
+
+/*======================================
+複数のスクロールアニメーション
+=======================================*/
+/*ふわっ（下から） */
+.fadeUp{
+animation-name: fadeUpAnime;
+animation-duration:0.9s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+
+@keyframes fadeUpAnime{
+  from {
+    opacity: 0;
+	transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+	transform: translateY(0);
+  }
+}
+
+/*ふわっ（右から） */
+.fadeRight{
+animation-name: fadeRightAnime;
+animation-duration:2.0s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+
+@keyframes fadeRightAnime{
+  from {
+    opacity: 0;
+	transform: translateX(-100px);
+  }
+
+  to {
+    opacity: 1;
+	transform: translateX(0);
+  }
+}
+
+/*ふわっ（左から） */
+.fadeLeft{
+animation-name: fadeLeftAnime;
+animation-duration:2.0s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+
+@keyframes fadeLeftAnime{
+  from {
+    opacity: 0;
+	transform: translateX(100px);
+  }
+
+  to {
+    opacity: 1;
+	transform: translateX(0);
+  }
+}
+
+/*---------------------------------
+Move to the Upper left
+-----------------------------------*/
+.flipLeftTop{
+animation-name: flipLeftTopAnime;
+animation-duration:0.5s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+
+@keyframes flipLeftTopAnime{
+from {
+transform: translate(-20px,80px) rotate(-15deg);
+	opacity: 0;
+}
+
+to {transform: translate(0,0) rotate(0deg);
+	opacity: 1;
+}
+}
+
+/*---------------------------------
+Move to the Upper right
+-----------------------------------*/
+.flipRightTop{
+animation-name: flipRightTopAnime;
+animation-duration:0.5s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+
+@keyframes flipRightTopAnime{
+from {
+transform: translate(-20px,80px) rotate(25deg);
+	opacity: 0;
+}
+
+to {transform: translate(0,1) rotate(0deg);
+	opacity: 1;
+}
+}
+
+/*---------------------------------
+under Line
+-----------------------------------*/
+.under{
+  border-bottom: dashed 5px #2b1c46;
+}
+
