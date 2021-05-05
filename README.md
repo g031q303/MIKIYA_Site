@@ -1,3 +1,4 @@
+![ミ・カシータ_デザインカンプ](https://user-images.githubusercontent.com/67403243/117115113-9e3fa380-adc7-11eb-9ecc-ca3077223739.JPG)
 # PORTFORIOについて
 
 ## **1.サイト名（URL）**
