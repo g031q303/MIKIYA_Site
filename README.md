@@ -19,7 +19,7 @@ POLTFORIO-ミ・カシータ-(https://test1-2684d.firebaseapp.com/)
 
 デザインカンプ作成(作業開始日：2021/02/25)
 
-![ミ・カシータのデザインカンプ]()
+![ミ・カシータ_デザインカンプ](https://user-images.githubusercontent.com/67403243/117114910-60427f80-adc7-11eb-8f89-4de699414fec.JPG)
 
 ↓
 コーディング開始(作業開始日：2021/03/01)
