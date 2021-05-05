@@ -1,4 +1,3 @@
-![ミ・カシータ_デザインカンプ](https://user-images.githubusercontent.com/67403243/117115113-9e3fa380-adc7-11eb-9ecc-ca3077223739.JPG)
 # PORTFORIOについて
 
 ## **1.サイト名（URL）**
@@ -20,7 +19,7 @@ POLTFORIO-ミ・カシータ-(https://test1-2684d.firebaseapp.com/)
 
 デザインカンプ作成(作業開始日：2021/02/25)
 
-![ミ・カシータ_デザインカンプ](https://user-images.githubusercontent.com/67403243/117114910-60427f80-adc7-11eb-8f89-4de699414fec.JPG)
+![ミ・カシータ_デザインカンプ](https://user-images.githubusercontent.com/67403243/117115113-9e3fa380-adc7-11eb-9ecc-ca3077223739.JPG)
 
 ↓
 コーディング開始(作業開始日：2021/03/01)
