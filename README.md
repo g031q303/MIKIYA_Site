@@ -42,7 +42,7 @@ Firebaseでデプロイし、公開(作業開始日：2021/02)
 
 開発環境：VisualCode,Adobe XD(デザインカンプ)
 
-使用言語：HTML5/CSS3、JavaScript、JQuery
+使用言語：HTML5/CSS3、JavaScript、jQuery
 
 
 ## **7.経緯についてと工夫点**
